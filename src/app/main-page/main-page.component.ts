@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Position } from '../bean/Position';
 import { SatelliteService } from '../service/satelliteService/satellite.service';
 
 @Component({
@@ -18,8 +19,8 @@ export class MainPageComponent implements OnInit {
     let newDate:Date = new Date(this.userDateTime);
     console.log(newDate.getTime())
     let data:number = newDate.getTime()/1000;
-    this.satelitteService.getConfig(data).subscribe(result=>{
-      console.log(result);
+    this.satelitteService.getConfig(data).subscribe((result:any)=>{
+      console.log(<Position[]> result);
     });
   }
 
