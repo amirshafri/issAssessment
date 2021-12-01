@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SatelliteService } from '../service/satelliteService/satellite.service';
 
 @Component({
   selector: 'app-main-page',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private satelitteService:SatelliteService) { }
   userDateTime: any;
   ngOnInit() {
+  }
+
+  getData(){
+    console.log(this.userDateTime)
+    let newDate:Date = new Date(this.userDateTime);
+    console.log(newDate.getTime())
+    let data:number = newDate.getTime()/1000;
+    this.satelitteService.getConfig(data).subscribe(result=>{
+      console.log(result);
+    });
   }
 
 }
